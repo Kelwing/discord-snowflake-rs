@@ -2,7 +2,7 @@
 name = "discord-snowflake"
 description = "A library for working snowflakes, Discord compatible."
 license = "MIT"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 
 [features]
@@ -13,7 +13,7 @@ twilight = ["dep:twilight-model"]
 
 [dependencies]
 serde = { version = "1", optional = true }
-sqlx = { version = "0.7.4", default-features = false, features = ["any", "postgres", "mysql", "sqlite"], optional = true }
+sqlx = { version = "0.8", default-features = false, features = ["any", "postgres", "mysql", "sqlite"], optional = true }
 thiserror = "1.0.61"
 twilight-model = { version = "0.15.4", optional = true }
 
