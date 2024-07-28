@@ -1,0 +1,19 @@
+[package]
+name = "discord-snowflake"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = []
+serde = ["dep:serde"]
+sqlx = ["dep:sqlx"]
+twilight = ["dep:twilight-model"]
+
+[dependencies]
+serde = { version = "1", optional = true }
+sqlx = { version = "0.7.4", default-features = false, features = ["any", "postgres", "mysql", "sqlite"], optional = true }
+thiserror = "1.0.61"
+twilight-model = { version = "0.15.4", optional = true }
+
+[dev-dependencies]
+serde_json = "1"
