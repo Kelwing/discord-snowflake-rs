@@ -1,4 +1,4 @@
-use sqlx::{ encode::IsNull, Decode, Encode, MySql, Postgres, Sqlite};
+use sqlx::{encode::IsNull, Decode, Encode, MySql, Postgres, Sqlite, Type};
 use crate::Snowflake;
 
 impl<'q> Encode<'q, MySql> for Snowflake {
@@ -45,5 +45,23 @@ impl<'r, 'b> Decode<'r, Postgres> for Snowflake {
 impl <'r, 'b> Decode<'r, Sqlite> for Snowflake {
     fn decode(value: <Sqlite as sqlx::Database>::ValueRef<'r>) -> Result<Self, sqlx::error::BoxDynError> {
         Ok(Self(<i64 as Decode<Sqlite>>::decode(value)? as u64))
+    }
+}
+
+impl Type<MySql> for Snowflake {
+    fn type_info() -> <MySql as sqlx::TypeInfo>::TypeInfo {
+        <u64 as Type<MySql>>::type_info()
+    }
+}
+
+impl Type<Postgres> for Snowflake {
+    fn type_info() -> <Postgres as sqlx::TypeInfo>::TypeInfo {
+        <i64 as Type<Postgres>>::type_info()
+    }
+}
+
+impl Type<Sqlite> for Snowflake {
+    fn type_info() -> <Sqlite as sqlx::TypeInfo>::TypeInfo {
+        <i64 as Type<Sqlite>>::type_info()
     }
 }
