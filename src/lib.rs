@@ -8,8 +8,6 @@ mod errors;
 mod generator;
 #[cfg(feature = "serde")]
 mod serde;
-#[cfg(feature = "sqlx")]
-mod sqlx;
 #[cfg(feature = "twilight")]
 mod twilight;
 
@@ -17,6 +15,8 @@ pub const DISCORD_EPOCH: u64 = 1420070400000;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[repr(transparent)]
+#[cfg_attr(feature = "sqlx", derive(sqlx::Type))]
+#[cfg_attr(feature = "sqlx", sqlx(transparent))]
 pub struct Snowflake(u64);
 
 impl Snowflake {
