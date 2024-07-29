@@ -16,7 +16,7 @@ pub const DISCORD_EPOCH: u64 = 1420070400000;
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[repr(transparent)]
 #[cfg_attr(feature = "sqlx", derive(sqlx::Type))]
-#[cfg_attr(feature = "sqlx", sqlx(transparent))]
+#[cfg_attr(feature = "sqlx", sqlx(transparent, no_pg_array))]
 pub struct Snowflake(u64);
 
 impl Snowflake {
