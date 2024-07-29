@@ -64,3 +64,9 @@ where
         self.deref().as_ref()
     }
 }
+
+impl From<u64> for Snowflake {
+    fn from(value: u64) -> Self {
+        Self(value)
+    }
+}

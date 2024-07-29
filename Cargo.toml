@@ -2,7 +2,7 @@
 name = "discord-snowflake"
 description = "A library for working snowflakes, Discord compatible."
 license = "MIT"
-version = "0.1.3"
+version = "0.1.4"
 edition = "2021"
 
 [features]
